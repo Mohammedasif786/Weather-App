@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+
+  <title>Frontend Mentor | Weather app</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <link rel="stylesheet" href="src/output.css">
+  <style>
+    .attribution {
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .attribution a {
+      color: hsl(228, 45%, 44%);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="min-h-screen bg-[#181845] flex flex-col items-center p-4">
+    <div class="flex justify-between items-center w-full mb-6">
+      <span class="flex items-center gap-2 text-orange-400 font-bold text-lg">
+        <img src="assets/images/logo.svg" alt="">
+      </span>
+      <button
+        class="bg-[#232354] hover:bg-[#414DCE] hover:cursor-pointer text-white px-6 focus:translate-x-0 py-3 rounded flex items-center gap-1"
+        id="unit">
+        Units
+        <img src="assets/images/icon-units.svg" alt="">
+      </button>
+      <div
+        class="absolute hidden rounded-xl text-white px-6 py-2 min-[375px]:w-[300px] left-[75%] min-[375px]:top-16 min-[375px]:flex-col bg-[#1f1c4e] leading-9"
+        id="menu-unit">
+        <h1 class="font-bold hover:cursor-pointer hover:bg-[#31316c] rounded pl-3">Switch to imperial</h1>
+        <div id="temperature" class="flex min-[375px]:flex-col border-white border-t-2">
+          <p>temperature</p>
+          <h1 class="font-bold hover:cursor-pointer hover:bg-[#232354] rounded pl-3">Celsius(<sup>o</sup>C)</h1>
+          <h1 class="font-bold  hover:cursor-pointer hover:bg-[#232354] rounded pl-3">Faherenheit(<sup>o</sup>F)</h1>
+        </div>
+        <div id="Wind speed" class="border-t-2 border-white">
+          <p>Wind speed</p>
+          <h1 class="font-bold hover:cursor-pointer hover:bg-[#232354] rounded pl-3">Km/h</h1>
+          <h1 class="font-bold hover:cursor-pointer hover:bg-[#232354] rounded pl-3">mph</h1>
+        </div>
+        <div id="preciptation" class="border-t-2 border-white">
+          <p>preciptation</p>
+          <h1 class="font-bold hover:cursor-pointer pl-3 hover:bg-[#232354] rounded">millimeter (mm)</h1>
+          <h1 class="font-bold hover:cursor-pointer pl-3 hover:bg-[#232354] rounded">Inches (in)</h1>
+        </div>
+      </div>
+    </div>
+    <!--Api error code-->
+    <div id="Api-error" class="flex flex-col justify-center items-center mt-16">
+      <img src="assets/images/icon-error.svg" alt="" width="40">
+      <h1 class="text-4xl tracking-wide text-white font-bold leading-20">Something went wrong!</h1>
+      <p class="text-center text-gray-400">We couldn't connect to the server (API error). Please try<br />again in a few
+        moments</p>
+      <button class="flex px-3 py-2 bg-[#232354] mt-4 rounded-xl text-white"><img src="assets/images/icon-retry.svg"
+          alt="">&nbsp;&nbsp;Retry</button>
+    </div>
+    <!--End 🔚-->
+  
+    <h1 class="flex text-white text-center my-8 font-bold text-3xl leading-tight mb-16" id="logoBody">How’s the Sky looking today?</h1>
+
+    <h1 class="flex text-2xl mt-8 leading-3 font-bold justify-center text-white " id="Error_City">No search result
+      found!😒</h1>
+    <div class="flex max-[1440px]:justify-evenly max-[1440px]:w-full max-[375px]:flex-col "
+      title="add hidden when error" id="weather_body">
+      <div class="max-[1440px]:grows">
+
+        <div id="searchFiled"
+          class="max-[375px]:w-full max-[1440px]:w-4xl mb-3 flex max-[375px]:flex-col max-[1440px]:items-center max-[1440px]:justify-center">
+          <img src="assets/images/icon-search.svg" alt="">
+          <input id="Query" type="search" placeholder="Search for a place..."
+            class="w-full p-3 rounded bg-[#2f2f49] text-white outline-none mb-2" />
+          <button
+            class="max-[375px]:w-full max-[1440px]:px-14 p-3 bg-blue-600 rounded text-white font-semibold hover:bg-[#4a4aae] hover:cursor-pointer"
+            id="City_search">Search</button>
+        </div>
+        <!--Reloading-->
+        <div
+          class="flex min-[375px]:ml-4 items-center absolute text-white bg-[#2f2f49] max-[375px]:w-[18rem] w-xl px-4 py-3 rounded-xl"  id="Search_in_prog">
+          <div class="spinner ml-2"></div>
+          <p class="ml-6 text-sm">Search in progress...</p>
+        </div>
+        <!--End-->
+        <div
+          class="bg-gradient-to-br max-[1440px]:flex max-[1440px]:items-center max-[1440px]:justify-around from-[#343479] to-[#1b1b3b] rounded-xl w-full p-5 mb-5 bg-no-repeat bg-cover text-center text-white"
+          style="background-image: url('assets/images/bg-today-large.svg');" id="Original_today">
+          <img src="assets/images/icon-partly-cloudy.webp" alt="" width="30%">
+          <div class="">
+            <div class="text-xl font-semibold mb-1">Berlin, Germany</div>
+            <div class="text-sm mb-4 opacity-80">Tuesday, Aug 5, 2025</div>
+            <div class="flex flex-col items-center gap-1">
+              <span class="text-6xl font-bold">20°</span>
+              <span class="inline-block">
+                <svg class="w-8 h-8 mx-auto" /* sunny icon SVG here * /></svg>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div
+          class="hidden bg-gradient-to-br max-[375px]:h-48 min-[375px]:h-[300px] max-[1440px]:items-center max-[1440px]:justify-around from-[#343479] to-[#1b1b3b] rounded-xl w-full p-5 mb-5 bg-no-repeat bg-cover text-center text-white"
+          id="Loading_today_large">
+          <div class="dots text-white bg-white flex-col">
+            <p class="mt-8 font-semibold">Loading...</p>
+          </div>
+          <div class="hidden">
+            <div class="text-xl font-semibold mb-1">Berlin, Germany</div>
+            <div class="text-sm mb-4 opacity-80">Tuesday, Aug 5, 2025</div>
+            <div class="flex flex-col items-center gap-1">
+              <span class="text-6xl font-bold">20°</span>
+              <span class="inline-block">
+                <svg class="w-8 h-8 mx-auto" /* sunny icon SVG here * /></svg>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="max-[1440px]:flex max-[1440px]:justify-around max-[1440px]:gap-0 max-[375px]:grid max-[375px]:grid-cols-2 max-[375px]:gap-4 max-[375px]:mb-5 w-full">
+          <div class="bg-[#2f2f49] rounded-lg text-white p-4 text-center">
+            <div class="font-bold text-lg">Feels Like</div>
+            <div class="text-2xl font-semibold">--°</div>
+          </div>
+          <div class="bg-[#2f2f49] rounded-lg text-white p-4 text-center">
+            <div class="font-bold text-lg">Humidity</div>
+            <div class="text-2xl font-semibold">--%</div>
+          </div>
+          <div class="bg-[#2f2f49] rounded-lg text-white p-4 text-center">
+            <div class="font-bold text-lg">Wind</div>
+            <div class="text-2xl font-semibold">-- km/h</div>
+          </div>
+          <div class="bg-[#2f2f49] rounded-lg text-white p-4 text-center">
+            <div class="font-bold text-lg">Precipitation</div>
+            <div class="text-2xl font-semibold">-- mm</div>
+          </div>
+        </div>
+        <div class="w-full mb-5">
+          <div class="font-semibold text-lg text-white mb-2 mx-4 my-6">Daily forecast</div>
+          <div class="grid grid-cols-4 gap-3">
+            <!-- Example day -->
+            <div class="bg-[#2f2f49] rounded-lg p-3 text-center text-white">
+              <div class="font-bold">Tue</div>
+              <div class="flex justify-center items-center">
+                <img src="assets/images/icon-partly-cloudy.webp" alt="" width="30%">
+              </div>
+              <div class="font-semibold">20°</div>
+              <div class="text-sm opacity-70">14°</div>
+            </div>
+
+            <div class="bg-[#2f2f49] rounded-lg p-3 text-center text-white">
+            </div>
+
+            <div class="bg-[#2f2f49] rounded-lg p-3 text-center text-white">
+            </div>
+
+            <div class="bg-[#2f2f49] rounded-lg p-3 text-center text-white">
+            </div>
+
+            <div class="bg-[#2f2f49] rounded-lg p-18 text-center text-white">
+            </div>
+
+            <div class="bg-[#2f2f49] rounded-lg p-3 text-center text-white">
+            </div>
+
+            <div class="bg-[#2f2f49] rounded-lg p-3 text-center text-white">
+            </div>
+            <!-- Repeat for other days, update icons/temp -->
+          </div>
+        </div>
+      </div>
+
+      <div class="max-[375px]:flex max-[375px]:justify-center" title="hidden4">
+        <div class="max-[375px]:w-48 max-[375px]:mb-5 p-4 bg-Deemblue rounded-xl max-[375px]:text-center ">
+          <div class="font-semibold text-lg text-white mb-2">Hourly forecast <span class="ml-2 text-xs">Tuesday</span>
+          </div>
+          <div class="space-y-2">
+            <div class="bg-[#2f2f49] rounded-lg p-3 flex justify-between items-center text-white min-[375px]:w-[330px]">
+              <div class="flex items-center grow">
+                <img src="assets/images/icon-rain.webp" alt="" width="50px">
+                <span>3 PM</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span>20°</span>
+              </div>
+            </div>
+
+            <div class="bg-[#2f2f49] rounded-lg p-8 flex justify-between items-center text-white min-[375px]:w-[330px]">
+            </div>
+
+            <div class="bg-[#2f2f49] rounded-lg p-8 flex justify-between items-center text-white min-[375px]:w-[330px]">
+            </div>
+            <div class="bg-[#2f2f49] rounded-lg p-8 flex justify-between items-center text-white min-[375px]:w-[330px]">
+            </div>
+            <div class="bg-[#2f2f49] rounded-lg p-8 flex justify-between items-center text-white min-[375px]:w-[330px]">
+            </div>
+            <div class="bg-[#2f2f49] rounded-lg p-8 flex justify-between items-center text-white min-[375px]:w-[330px]">
+            </div>
+            <div class="bg-[#2f2f49] rounded-lg p-8 flex justify-between items-center text-white min-[375px]:w-[330px]">
+            </div>
+            <div class="bg-[#2f2f49] rounded-lg p-8 flex justify-between items-center text-white min-[375px]:w-[330px]">
+            </div>
+            <!-- Repeat hour blocks, update icons/temp -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>.
+    Coded by <a href="#">Mohammed Asif</a>.
+  </div>
+  <script src="src/style_script.js"></script>
+  <script type="module" src="src/script.mjs" ></script>
+</body>
+
+</html>

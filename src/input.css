@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+.dots {
+   width: 56px;
+   height: 26.9px;
+   background: radial-gradient(circle closest-side,#a6a6a6 90%,#0000) 0%   50%,
+          radial-gradient(circle closest-side,#d3d3d3 90%,#0000) 50%  50%,
+          radial-gradient(circle closest-side,#cacaca 90%,#0000) 100% 50%;
+   background-size: calc(100%/3) 13.4px;
+   background-repeat: no-repeat;
+   animation: dots-7ar3yq 1s infinite linear;
+}
+
+@keyframes dots-7ar3yq {
+   20% {
+      background-position: 0%   0%, 50%  50%,100%  50%;
+   }
+
+   40% {
+      background-position: 0% 100%, 50%   0%,100%  50%;
+   }
+
+   60% {
+      background-position: 0%  50%, 50% 100%,100%   0%;
+   }
+
+   80% {
+      background-position: 0%  50%, 50%  50%,100% 100%;
+   }
+}
+
+.spinner {
+   width: 4.8px;
+   height: 4.8px;
+   border-radius: 4.8px;
+   box-shadow: 12px 0px 0 0 rgba(71,75,255,0.2), 9.7px 7.1px 0 0 rgba(71,75,255,0.4), 3.7199999999999998px 11.4px 0 0 rgba(71,75,255,0.6), -3.7199999999999998px 11.4px 0 0 rgba(71,75,255,0.8), -9.7px 7.1px 0 0 #474bff;
+   animation: spinner-b87k6z 1s infinite linear;
+}
+
+@keyframes spinner-b87k6z {
+   to {
+      transform: rotate(360deg);
+   }
+}
+
+h1 {
+    font-family: 'BricolageGrotesque',sans-serif;
+}
+
+@font-face {
+    font-family: 'BricolageGrotesque';
+    src: url('../assets/fonts/Bricolage_Grotesque/BricolageGrotesque-VariableFont_opsz\,wdth\,wght.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@layer theme {
+    @theme {
+        --color-Deemblue: #25253e;    
+        --color-backBlue: #4657d9;
+    }
+}
+
+.bg-image {
+    background-image: url('assets/images/bg-today-small.svg');
+}
