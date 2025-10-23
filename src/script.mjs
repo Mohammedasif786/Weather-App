@@ -1,5 +1,14 @@
 const cityName = document.getElementById('CityName');
 const calender = document.getElementById('Calender');
+const nowTemp = document.getElementById('NowTemp');
+const feelLikeTemp = document.getElementById('FeelLikeTemp');
+const humidity = document.getElementById('Humidity');
+const wind = document.getElementById('Wind');
+const preciptation = document.getElementById('preciptation');
+const dailyWeatherBlock = document.getElementById('DailyWeatherBlock');
+
+const d = new Date();
+let dateString = d.toString();
 
 document.addEventListener('DOMContentLoaded', () => {
   const Query = document.getElementById('Query');
@@ -16,20 +25,25 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     let [lat, lan, others] = await Automate(cityName);
-    /*{
-    //console.log(others);
-    /*const parts = others[1].display_name.split(',');
-    console.log(others[0])
-    console.log(parts[0], parts[2]);*/
+    const data = await Weather_API(lat, lan);
 
     fullCityName(others);
-    const data = await Weather_API(lat, lan);
-    const data2 = await Weather_API2(lat,lan);
-    
-    console.log(data2,data)
-    //console.log(data.hourly.time[0]);
+    fourBlocksData(data);
+
+    for(let i=0; i<7; i++)
+    DynamicDailyWeather(data,i);
+
   });
+    calender.textContent = dateString.slice(0,15);
 });
+
+function fourBlocksData(data) {
+    nowTemp.textContent = `${Math.round(data.hourly.apparent_temperature[0])}°`;
+    feelLikeTemp.textContent = `${Math.round(data.hourly.apparent_temperature[0] - 2)}°`; 
+    humidity.textContent = data.minutely_15.relative_humidity_2m ? `${data.minutely_15.relative_humidity_2m[0]}%` : '--%';
+    wind.textContent = data.hourly.wind_speed_10m ? `${Math.round(data.hourly.wind_speed_10m[0] * 3.6)} km/h` : '-- km/h';
+    preciptation.textContent = data.minutely_15.precipitation ? `${data.minutely_15.precipitation[0]} mm` : '-- mm';
+}
 
 function fullCityName(others) {
   //console.log(others[1].display_name);
@@ -60,7 +74,7 @@ async function Automate(Cityname) {
 }
 
 async function Weather_API(lat, lan) {
-  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lan}&hourly=apparent_temperature&minutely_15=relative_humidity_2m`
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lan}&hourly=apparent_temperature&hourly=wind_speed_10m&wind_speed_unit=ms&forecast_days=16&minutely_15=relative_humidity_2m&minutely_15=precipitation&timezone=auto&forecast_days=7&daily=apparent_temperature_mean`
   try {
     const response = await fetch(url)
     const data = await response.json();
@@ -70,13 +84,20 @@ async function Weather_API(lat, lan) {
   }
 }
 
-async function Weather_API2(lat, lan) {
-  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lan}&hourly=temperature_2m&daily=temperature_2m_max&timezone=auto&forecast_days=7&daily=apparent_temperature_mean`
-  try {
-    const response = await fetch(url)
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error(`Error at ${error}😟`)
-  }
+function DynamicDailyWeather(data,loop = 0) {
+  // This function can be implemented to dynamically create daily weather blocks
+  // based on the data received from the Weather_API function.
+  const Day = new Date(data.daily.time[loop])
+  const OnlyDay = Day.getDay()?['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][Day.getDay()]: 'Sun';
+  const div = document.createElement('div');
+  div.className = 'bg-[#2f2f49] rounded-lg p-3 text-center text-white';
+  div.innerHTML = `
+    <div class="font-bold">${OnlyDay}</div>
+    <div class="flex justify-center items-center">
+      <img src="assets/images/icon-partly-cloudy.webp" alt="" width="30%">
+    </div>
+    <div class="font-semibold mt-2">${Math.round(data.hourly.apparent_temperature[loop])}° / ${Math.round(data.hourly.apparent_temperature[loop] - 2)}°</div>
+  `;
+  dailyWeatherBlock.appendChild(div);
+
 }

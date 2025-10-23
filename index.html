@@ -101,7 +101,7 @@
             <div class="text-xl font-semibold mb-1" id="CityName">Berlin, Germany</div>
             <div class="text-sm mb-4 opacity-80" id="Calender">Tuesday, Aug 5, 2025</div>
             <div class="flex flex-col items-center gap-1">
-              <span class="text-6xl font-bold">20°</span>
+              <span class="text-6xl font-bold" id="NowTemp">20°</span>
               <span class="inline-block">
                 <svg class="w-8 h-8 mx-auto" /* sunny icon SVG here * /></svg>
               </span>
@@ -130,26 +130,26 @@
           class="max-[1440px]:flex max-[1440px]:justify-around max-[1440px]:gap-0 max-[375px]:grid max-[375px]:grid-cols-2 max-[375px]:gap-4 max-[375px]:mb-5 w-full">
           <div class="bg-[#2f2f49] rounded-lg text-white p-4 text-center">
             <div class="font-bold text-lg">Feels Like</div>
-            <div class="text-2xl font-semibold">--°</div>
+            <div class="text-2xl font-semibold" id="FeelLikeTemp">--°</div>
           </div>
           <div class="bg-[#2f2f49] rounded-lg text-white p-4 text-center">
             <div class="font-bold text-lg">Humidity</div>
-            <div class="text-2xl font-semibold">--%</div>
+            <div class="text-2xl font-semibold" id="Humidity">--%</div>
           </div>
           <div class="bg-[#2f2f49] rounded-lg text-white p-4 text-center">
             <div class="font-bold text-lg">Wind</div>
-            <div class="text-2xl font-semibold">-- km/h</div>
+            <div class="text-2xl font-semibold" id="Wind">-- km/h</div>
           </div>
           <div class="bg-[#2f2f49] rounded-lg text-white p-4 text-center">
             <div class="font-bold text-lg">Precipitation</div>
-            <div class="text-2xl font-semibold">-- mm</div>
+            <div class="text-2xl font-semibold" id="preciptation">-- mm</div>
           </div>
         </div>
         <div class="w-full mb-5">
           <div class="font-semibold text-lg text-white mb-2 mx-4 my-6">Daily forecast</div>
-          <div class="grid grid-cols-4 gap-3">
+          <div class="grid grid-cols-4 gap-3" id="DailyWeatherBlock">
             <!-- Example day -->
-            <div class="bg-[#2f2f49] rounded-lg p-3 text-center text-white">
+            <div class="bg-[#2f2f49] rounded-lg p-3 text-center text-white" >
               <div class="font-bold">Tue</div>
               <div class="flex justify-center items-center">
                 <img src="assets/images/icon-partly-cloudy.webp" alt="" width="30%">
