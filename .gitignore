@@ -39,6 +39,8 @@ npm-debug.log*
 .DS_Store
 Thumbs.db
 
+.git
+
 #package files
 package-lock.json
 package.json
