@@ -149,31 +149,26 @@
           <div class="font-semibold text-lg text-white mb-2 mx-4 my-6">Daily forecast</div>
           <div class="grid grid-cols-4 gap-3" id="DailyWeatherBlock">
             <!-- Example day -->
-            <div class="bg-[#2f2f49] rounded-lg p-3 text-center text-white" >
-              <div class="font-bold">Tue</div>
-              <div class="flex justify-center items-center">
-                <img src="assets/images/icon-partly-cloudy.webp" alt="" width="30%">
-              </div>
-              <div class="font-semibold">20°</div>
-              <div class="text-sm opacity-70">14°</div>
+ 
+            <div class="bg-[#2f2f49] rounded-lg py-16 text-center text-white DailyWeatherLoading">
+            </div>           
+
+            <div class="bg-[#2f2f49] rounded-lg p-3 text-center text-white DailyWeatherLoading">
             </div>
 
-            <div class="bg-[#2f2f49] rounded-lg p-3 text-center text-white">
+            <div class="bg-[#2f2f49] rounded-lg p-3 text-center text-white DailyWeatherLoading">
             </div>
 
-            <div class="bg-[#2f2f49] rounded-lg p-3 text-center text-white">
+            <div class="bg-[#2f2f49] rounded-lg p-3 text-center text-white DailyWeatherLoading">
             </div>
 
-            <div class="bg-[#2f2f49] rounded-lg p-3 text-center text-white">
+            <div class="bg-[#2f2f49] rounded-lg p-16 text-center text-white DailyWeatherLoading">
             </div>
 
-            <div class="bg-[#2f2f49] rounded-lg p-18 text-center text-white">
+            <div class="bg-[#2f2f49] rounded-lg p-3 text-center text-white DailyWeatherLoading">
             </div>
 
-            <div class="bg-[#2f2f49] rounded-lg p-3 text-center text-white">
-            </div>
-
-            <div class="bg-[#2f2f49] rounded-lg p-3 text-center text-white">
+            <div class="bg-[#2f2f49] rounded-lg p-3 text-center text-white DailyWeatherLoading">
             </div>
             <!-- Repeat for other days, update icons/temp -->
           </div>
@@ -181,11 +176,11 @@
       </div>
 
       <div class="max-[375px]:flex max-[375px]:justify-center" title="hidden4">
-        <div class="max-[375px]:w-48 max-[375px]:mb-5 p-4 bg-Deemblue rounded-xl max-[375px]:text-center ">
-          <div class="font-semibold text-lg text-white mb-2">Hourly forecast <span class="ml-2 text-xs">Tuesday</span>
+        <div class="max-[375px]:w-48 max-[375px]:mb-5 p-4 bg-Deemblue rounded-xl max-[375px]:text-center">
+          <div class="font-semibold text-lg text-white mb-2">Hourly forecast <span class="ml-2 text-sm">Today</span>
           </div>
-          <div class="space-y-2">
-            <div class="bg-[#2f2f49] rounded-lg p-3 flex justify-between items-center text-white min-[375px]:w-[330px]">
+          <div class="space-y-2" id="HourlyForcast">
+            <div class="bg-[#2f2f49] rounded-lg p-3 flex justify-between items-center text-white min-[375px]:w-[330px] removeLoading">
               <div class="flex items-center grow">
                 <img src="assets/images/icon-rain.webp" alt="" width="50px">
                 <span>3 PM</span>
@@ -195,20 +190,19 @@
               </div>
             </div>
 
-            <div class="bg-[#2f2f49] rounded-lg p-8 flex justify-between items-center text-white min-[375px]:w-[330px]">
+            <div class="bg-[#2f2f49] rounded-lg p-8 flex justify-between items-center text-white min-[375px]:w-[330px] removeLoading">
             </div>
-
-            <div class="bg-[#2f2f49] rounded-lg p-8 flex justify-between items-center text-white min-[375px]:w-[330px]">
+            <div class="bg-[#2f2f49] rounded-lg p-8 flex justify-between items-center text-white min-[375px]:w-[330px] removeLoading">
             </div>
-            <div class="bg-[#2f2f49] rounded-lg p-8 flex justify-between items-center text-white min-[375px]:w-[330px]">
+            <div class="bg-[#2f2f49] rounded-lg p-8 flex justify-between items-center text-white min-[375px]:w-[330px] removeLoading">
             </div>
-            <div class="bg-[#2f2f49] rounded-lg p-8 flex justify-between items-center text-white min-[375px]:w-[330px]">
+            <div class="bg-[#2f2f49] rounded-lg p-8 flex justify-between items-center text-white min-[375px]:w-[330px] removeLoading">
             </div>
-            <div class="bg-[#2f2f49] rounded-lg p-8 flex justify-between items-center text-white min-[375px]:w-[330px]">
+            <div class="bg-[#2f2f49] rounded-lg p-8 flex justify-between items-center text-white min-[375px]:w-[330px] removeLoading">
             </div>
-            <div class="bg-[#2f2f49] rounded-lg p-8 flex justify-between items-center text-white min-[375px]:w-[330px]">
+            <div class="bg-[#2f2f49] rounded-lg p-8 flex justify-between items-center text-white min-[375px]:w-[330px] removeLoading">
             </div>
-            <div class="bg-[#2f2f49] rounded-lg p-8 flex justify-between items-center text-white min-[375px]:w-[330px]">
+            <div class="bg-[#2f2f49] rounded-lg p-8 flex justify-between items-center text-white min-[375px]:w-[330px] removeLoading">
             </div>
             <!-- Repeat hour blocks, update icons/temp -->
           </div>
