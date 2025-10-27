@@ -1,4 +1,4 @@
-import { setLoading,toggleServerError } from './style_script.js';
+import { setLoading,toggleServerError,closeErrorCity } from './style_script.js';
 const cityName = document.getElementById('CityName');
 const calender = document.getElementById('Calender');
 const nowTemp = document.getElementById('NowTemp');
@@ -111,10 +111,9 @@ function fourBlocksData(data) {
 
 function fullCityName(others) {
   //console.log(others[1].display_name);
-
+  closeErrorCity(others[0].display_name);
   if (others[1]) cityName.textContent = others[1].display_name;
   else cityName.textContent = others[0].display_name;
-  return cityName.textContent = others[0].display_name;
 }
 
 async function Automate(Cityname) {

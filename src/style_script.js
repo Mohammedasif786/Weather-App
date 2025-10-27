@@ -49,7 +49,8 @@ if (serverError.classList.contains('flex')) {
 errorCity.classList.add('hidden')
 //const outSide = document.getElementById('body');
 
-const database = 'Gulbarga';
+function closeErrorCity(CitySearch)  {
+const database = 'Gulbarga' || CitySearch;
 City_Search.addEventListener('click', function(){
     if (search.value === database) {
         if (weatherBody.classList.contains('hidden') || errorCity.classList.contains('hidden')) {
@@ -66,6 +67,7 @@ City_Search.addEventListener('click', function(){
     }
 
 })
+}
 
 function closeUnit() {
 if (menu_unit.classList.contains('hidden')) {
@@ -79,4 +81,4 @@ if (menu_unit.classList.contains('hidden')) {
 
 unit.addEventListener('click',closeUnit); 
 
-export { setLoading, toggleServerError };
+export { setLoading, toggleServerError, closeErrorCity };
