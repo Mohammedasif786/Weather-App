@@ -1,8 +1,7 @@
-import { fullCityName } from "./script.mjs";
 const menu_unit = document.getElementById('menu-unit');
 const unit = document.getElementById('unit');
 const City_Search = document.getElementById('City_search');
-const search = document.getElementById('search');
+const search = document.getElementById('Query');
 const weatherBody = document.getElementById('weather_body');
 const errorCity = document.getElementById('Error_City');
 const serverError = document.getElementById('Api-error');
@@ -50,9 +49,10 @@ if (serverError.classList.contains('flex')) {
 errorCity.classList.add('hidden')
 //const outSide = document.getElementById('body');
 
-const database = 'Gulbarga';
+function closeErrorCity(CitySearch)  {
+const database = 'Gulbarga' || CitySearch;
 City_Search.addEventListener('click', function(){
-    if (search.value === fullCityName || database) {
+    if (search.value === database) {
         if (weatherBody.classList.contains('hidden') || errorCity.classList.contains('hidden')) {
             weatherBody.classList.remove('hidden');
             weatherBody.classList.add('flex');
@@ -67,6 +67,7 @@ City_Search.addEventListener('click', function(){
     }
 
 })
+}
 
 function closeUnit() {
 if (menu_unit.classList.contains('hidden')) {
@@ -80,4 +81,4 @@ if (menu_unit.classList.contains('hidden')) {
 
 unit.addEventListener('click',closeUnit); 
 
-export { setLoading, toggleServerError };
+export { setLoading, toggleServerError, closeErrorCity };

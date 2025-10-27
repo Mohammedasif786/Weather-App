@@ -42,14 +42,14 @@ Thumbs.db
 .git
 
 #package files
-package-lock.json
-package.json
+#package-lock.json
+#package.json
 
 #tailwind output
 src/output.css
 
 require.txt
 style-guide.md
-README.md
+READMEss.md
 preview.jpg
 design
