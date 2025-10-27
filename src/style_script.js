@@ -1,8 +1,7 @@
-import { fullCityName } from "./script.mjs";
 const menu_unit = document.getElementById('menu-unit');
 const unit = document.getElementById('unit');
 const City_Search = document.getElementById('City_search');
-const search = document.getElementById('search');
+const search = document.getElementById('Query');
 const weatherBody = document.getElementById('weather_body');
 const errorCity = document.getElementById('Error_City');
 const serverError = document.getElementById('Api-error');
@@ -52,7 +51,7 @@ errorCity.classList.add('hidden')
 
 const database = 'Gulbarga';
 City_Search.addEventListener('click', function(){
-    if (search.value === fullCityName || database) {
+    if (search.value === database) {
         if (weatherBody.classList.contains('hidden') || errorCity.classList.contains('hidden')) {
             weatherBody.classList.remove('hidden');
             weatherBody.classList.add('flex');
